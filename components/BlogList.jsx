@@ -10,14 +10,14 @@ export const BlogList = () => {
 
   return (
     <section className="flex flex-col gap-10">
-      <ul className="mx-auto flex items-center gap-5">
+      <ul className="mx-auto flex flex-wrap justify-center items-center gap-6">
         <li>
           <button
             onClick={() => setMenu("All")}
             type="button"
             className={`${
-              menu === "All" && "bg-black text-white px-4 py-1 text-sm "
-            } h-[50px] min-w-[150px] border border-black`}
+              menu === "All" && "bg-black text-white"
+            } px-4 py-1 min-w-[120px] min-h-[50px] text-sm border border-black`}
           >
             All
           </button>
@@ -27,10 +27,10 @@ export const BlogList = () => {
             onClick={() => setMenu("Technology")}
             type="button"
             className={`${
-              menu === "Technology" && "bg-black text-white px-4 py-1 text-sm "
-            } h-[50px] min-w-[150px] border border-black`}
+              menu === "Technology" && "bg-black text-white"
+            } px-4 py-1 min-w-[120px] min-h-[50px] text-sm border border-black`}
           >
-            Technology
+            Tech
           </button>
         </li>
         <li>
@@ -38,8 +38,8 @@ export const BlogList = () => {
             onClick={() => setMenu("Startup")}
             type="button"
             className={`${
-              menu === "Startup" && "bg-black text-white px-4 py-1 text-sm "
-            } h-[50px] min-w-[150px] border border-black`}
+              menu === "Startup" && "bg-black text-white"
+            } px-4 py-1 min-w-[120px] min-h-[50px] text-sm border border-black`}
           >
             Startup
           </button>
@@ -49,8 +49,8 @@ export const BlogList = () => {
             onClick={() => setMenu("Lifestyle")}
             type="button"
             className={`${
-              menu === "Lifestyle" && "bg-black text-white px-4 py-1 text-sm "
-            } h-[50px] min-w-[150px] border border-black`}
+              menu === "Lifestyle" && "bg-black text-white"
+            } px-4 py-1 min-w-[120px] min-h-[50px] text-sm border border-black`}
           >
             Lifestyle
           </button>
@@ -62,6 +62,7 @@ export const BlogList = () => {
           .map(({ id, image, title, category, description }) => (
             <li key={id}>
               <BlogItem
+                id={id}
                 image={image}
                 title={title}
                 category={category}

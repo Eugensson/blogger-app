@@ -2,7 +2,7 @@ import {
   RiYoutubeFill,
   RiFacebookBoxFill,
   RiInstagramFill,
-  RiPinterestFill,
+  RiLinkedinFill,
   RiTwitterXFill,
 } from "react-icons/ri";
 import Link from "next/link";
@@ -21,7 +21,7 @@ export const Footer = () => {
       <p className="text-sm text-white/50">
         Copyright © 2024 blogger. All right reserved.
       </p>
-      <ul className="flex items-center gap-8 text-[36px]">
+      <ul className="flex items-center gap-4 text-[36px]">
         <li>
           <Link
             href="https://www.facebook.com/"
@@ -47,6 +47,15 @@ export const Footer = () => {
             className="text-white/50 hover:text-white"
           >
             <RiInstagramFill />
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="https://www.linkedin.com/"
+            target="_blank"
+            className="text-white/50 hover:text-white"
+          >
+            <RiLinkedinFill />
           </Link>
         </li>
         <li>

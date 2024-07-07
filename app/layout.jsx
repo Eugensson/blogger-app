@@ -18,9 +18,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={outfit.className}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <div className="flex flex-col justify-between h-screen">
+          <Header />
+          <main className="grow">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

@@ -24,9 +24,12 @@ export const BlogItem = ({ id, image, title, category, description }) => {
         <h5 className="mb-2 text-lg font-medium tracking-tight text-gray-700">
           {title}
         </h5>
-        <p className="mb-3 text-sm tracking-tight text-gray-500">
-          {description}
-        </p>
+        <p
+          className="mb-3 text-sm tracking-tight text-gray-500"
+          dangerouslySetInnerHTML={{
+            __html: description.slice(0, 100),
+          }}
+        ></p>
         <Link
           href={`/blogs/${id}`}
           className="inline-flex items-center gap-2 py-2 font-semibold text-center"

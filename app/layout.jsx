@@ -1,4 +1,6 @@
 import { Outfit } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 import { Header } from "@/components/Header";
@@ -22,6 +24,7 @@ export default function RootLayout({ children }) {
           <Header />
           <main className="grow">{children}</main>
           <Footer />
+          <ToastContainer theme="dark" />
         </div>
       </body>
     </html>

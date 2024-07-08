@@ -9,6 +9,7 @@ import {
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Socail } from "@/components/Socail";
 
 const BaseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -65,20 +66,7 @@ const BlogPage = ({ params }) => {
               <p className="text-black font-semibold mb-4">
                 Share this article on social media
               </p>
-              <ul className="flex items-center gap-4 text-[30px]">
-                <li>
-                  <RiFacebookBoxFill />
-                </li>
-                <li>
-                  <RiInstagramFill />
-                </li>
-                <li>
-                  <RiLinkedinFill />
-                </li>
-                <li>
-                  <RiTwitterXFill />
-                </li>
-              </ul>
+              <Socail />
             </div>
           </div>
         </article>

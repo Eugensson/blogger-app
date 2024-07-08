@@ -3,8 +3,17 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import { IoTrashBinSharp } from "react-icons/io5";
 
-import { SubsTabelItem } from "@/components/adminComponents/SubsTabelItem";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const BaseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -32,36 +41,35 @@ const SubscriptionsPage = () => {
   }, []);
 
   return (
-    <div className="flex-1 p-2 pl-16">
-      <h1>All subscriptions</h1>
-      <div className="relative h-[55vh] w-[900px] overflow-x-auto mt-2 border border-gray-400 scrollbar-hide">
-        <table className="w-full text-sm text-gray-500">
-          <thead className="text-sm text-gray-700 text-left uppercase bg-gray-50">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Email subscription
-              </th>
-              <th scope="col" className="hidden sm:block px-6 py-3">
-                Date
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {emails.map(({ _id, date, email }) => (
-              <SubsTabelItem
-                key={_id}
-                id={_id}
-                date={date}
-                email={email}
-                deleteEmail={deleteEmail}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div className="flex-1 p-5">
+      <Table>
+        <TableCaption>A list of your subscriptions.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-1/2">Email subscription</TableHead>
+            <TableHead className="w-1/4">Date</TableHead>
+            <TableHead className="w-1/4">Action</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {emails.map(({ _id, date, email }) => {
+            const blogDate = new Date(date);
+
+            return (
+              <TableRow key={_id}>
+                <TableCell className="font-medium">{email}</TableCell>
+                <TableCell>{blogDate.toDateString()}</TableCell>
+                <TableCell>
+                  <IoTrashBinSharp
+                    className="w-5 h-5 cursor-pointer"
+                    onClick={() => deleteEmail(_id)}
+                  />
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
     </div>
   );
 };

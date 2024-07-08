@@ -1,10 +1,20 @@
 "use client";
 
 import axios from "axios";
+import Image from "next/image";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import { IoTrashBinSharp } from "react-icons/io5";
 
-import { BlogTableItem } from "@/components/adminComponents/BlogTableItem";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const BaseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -31,41 +41,46 @@ const BlogListPage = () => {
   }, []);
 
   return (
-    <div className="flex-1 p-2 pl-16">
-      <h1>All blogs</h1>
-      <div className="relative h-[55vh] w-[900px] overflow-x-auto mt-2 border border-gray-400 scrollbar-hide">
-        <table className="w-full text-sm text-gray-500">
-          <thead className="text-sm text-gray-700 text-left uppercase bg-gray-50">
-            <tr>
-              <th scope="col" className="hidden sm:block px-6 py-3">
-                Author name
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Blog title
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Date
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {blogs.map(({ _id, authorImg, title, author, date }) => (
-              <BlogTableItem
-                key={_id}
-                id={_id}
-                authorImg={authorImg}
-                title={title}
-                author={author}
-                date={date}
-                deleteBlog={deleteBlog}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
+    <div className="flex-1 p-5">
+      <Table>
+        <TableCaption>A list of your blogs.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-1/3">Author name</TableHead>
+            <TableHead className="w-1/3">Blog title</TableHead>
+            <TableHead className="w-1/6">Date</TableHead>
+            <TableHead className="w-1/6">Action</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {blogs.map(({ _id, authorImg, title, author, date }) => {
+            const blogDate = new Date(date);
+            return (
+              <TableRow key={_id}>
+                <TableCell className="flex items-center gap-2 font-medium">
+                  <Image
+                    src={authorImg ? authorImg : assets.profile_icon}
+                    alt="User profile avatar"
+                    width={60}
+                    height={60}
+                  />
+                  {author}
+                </TableCell>
+                <TableCell className="w-1/3">{title}</TableCell>
+                <TableCell className="w-1/6">
+                  {blogDate.toDateString()}
+                </TableCell>
+                <TableCell className="w-1/6 text-right">
+                  <IoTrashBinSharp
+                    className="w-5 h-5 cursor-pointer"
+                    onClick={() => deleteBlog(_id)}
+                  />
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
     </div>
   );
 };

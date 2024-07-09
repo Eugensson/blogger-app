@@ -1,4 +1,3 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import { Outfit } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -19,17 +18,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={outfit.className}>
-          <div className="flex flex-col justify-between h-screen">
-            <Header />
-            <main className="grow">{children}</main>
-            <Footer />
-            <ToastContainer theme="dark" />
-          </div>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={outfit.className}>
+        <div className="flex flex-col justify-between h-screen">
+          <Header />
+          <main className="grow">{children}</main>
+          <Footer />
+          <ToastContainer theme="dark" />
+        </div>
+      </body>
+    </html>
   );
 }
